@@ -1,0 +1,10 @@
+
+ssh -i "northwind-02.pem" ec2-user@ec2-54-164-141-45.compute-1.amazonaws.com
+
+
+cd D:\Documents\eclipse-workspace\northwind-data\src\main\resources\sql-scripts
+minad06
+Creeper01!
+mysqlsh --uri minad06@northwind-02.cifgz5limoh1.us-east-1.rds.amazonaws.com:3306
+\sql
+\use northwind

@@ -1,0 +1,144 @@
+[cloudshell-user@ip-10-2-82-112 ~]$ aws elbv2 describe-target-health --target-group-arn arn:aws:elasticloadbalancing:us-east-1:407620690842:targetgroup/tg1/d99594b7a7f890db
+{
+    "TargetHealthDescriptions": [
+        {
+            "Target": {
+                "Id": "i-0ce55830ee2837796",
+                "Port": 80
+            },
+            "HealthCheckPort": "80",
+            "TargetHealth": {
+                "State": "healthy"
+            }
+        },
+        {
+            "Target": {
+                "Id": "i-0ce55830ee2837796",
+                "Port": 443
+            },
+            "HealthCheckPort": "443",
+            "TargetHealth": {
+                "State": "unhealthy",
+                "Reason": "Target.FailedHealthChecks",
+                "Description": "Health checks failed"
+            }
+        }
+    ]
+}
+
+openssl s_client -connect <your-domain>:443 -showcerts
+openssl s_client -connect www.linus-lin-info.com:443 -showcerts
+
+
+aws acm describe-certificate --certificate-arn arn:aws:acm:us-east-1:407620690842:certificate/e4b3c5d9-91b7-4b43-b8fb-ab4c8917e4b3
+
+[cloudshell-user@ip-10-4-33-215 ~]$ aws acm describe-certificate --certificate-arn arn:aws:acm:us-east-1:407620690842:certificate/e4b3c5d9-91b7-4b43-b8fb-ab4c8917e4b3
+{
+    "Certificate": {
+        "CertificateArn": "arn:aws:acm:us-east-1:407620690842:certificate/e4b3c5d9-91b7-4b43-b8fb-ab4c8917e4b3",
+        "DomainName": "linus-lin-info.com",
+        "SubjectAlternativeNames": [
+            "linus-lin-info.com",
+            "*.linus-lin-info.com",
+            "www.linus-lin-info.com"
+        ],
+        "DomainValidationOptions": [
+            {
+                "DomainName": "linus-lin-info.com",
+                "ValidationDomain": "linus-lin-info.com",
+                "ValidationStatus": "SUCCESS",
+                "ResourceRecord": {
+                    "Name": "_e7edbf7d728d98a6868cd7b0354dea22.linus-lin-info.com.",
+                    "Type": "CNAME",
+                    "Value": "_300e9e84bc8e4abdd7ae9a661386926c.stwyzjdjkd.acm-validations.aws."
+                },
+                "ValidationMethod": "DNS"
+            },
+            {
+                "DomainName": "*.linus-lin-info.com",
+                "ValidationDomain": "*.linus-lin-info.com",
+                "ValidationStatus": "SUCCESS",
+                "ResourceRecord": {
+                    "Name": "_e7edbf7d728d98a6868cd7b0354dea22.linus-lin-info.com.",
+                    "Type": "CNAME",
+                    "Value": "_300e9e84bc8e4abdd7ae9a661386926c.stwyzjdjkd.acm-validations.aws."
+                },
+                "ValidationMethod": "DNS"
+            },
+            {
+                "DomainName": "www.linus-lin-info.com",
+                "ValidationDomain": "www.linus-lin-info.com",
+                "ValidationStatus": "SUCCESS",
+                "ResourceRecord": {
+                    "Name": "_5b9f50f613028cf1b11e39bfeddcb674.www.linus-lin-info.com.",
+                    "Type": "CNAME",
+                    "Value": "_169ecb93b83ed95a1116f520141524d0.xmkpffzlvd.acm-validations.aws."
+                },
+                "ValidationMethod": "DNS"
+            }
+        ],
+        "Serial": "01:bc:87:d1:53:60:0b:9e:8e:9b:9c:26:0e:12:ac:49",
+        "Subject": "CN=linus-lin-info.com",
+        "Issuer": "Amazon",
+        "CreatedAt": "2023-01-17T04:37:22.389000+00:00",
+        "IssuedAt": "2023-01-17T04:37:45.235000+00:00",
+        "Status": "ISSUED",
+        "NotBefore": "2023-01-17T00:00:00+00:00",
+        "NotAfter": "2024-02-16T23:59:59+00:00",
+        "KeyAlgorithm": "RSA-2048",
+        "SignatureAlgorithm": "SHA256WITHRSA",
+        "InUseBy": [
+            "arn:aws:elasticloadbalancing:us-east-1:407620690842:loadbalancer/app/load-balancer-01/77582c219eb1cb4b"
+        ],
+        "Type": "AMAZON_ISSUED",
+        "KeyUsages": [
+            {
+                "Name": "DIGITAL_SIGNATURE"
+            },
+            {
+                "Name": "KEY_ENCIPHERMENT"
+            }
+        ],
+        "ExtendedKeyUsages": [
+            {
+                "Name": "TLS_WEB_SERVER_AUTHENTICATION",
+                "OID": "1.3.6.1.5.5.7.3.1"
+            },
+            {
+                "Name": "TLS_WEB_CLIENT_AUTHENTICATION",
+                "OID": "1.3.6.1.5.5.7.3.2"
+            }
+        ],
+        "RenewalEligibility": "ELIGIBLE",
+        "Options": {
+            "CertificateTransparencyLoggingPreference": "ENABLED"
+        }
+    }
+}
+
+nslookup  dnschecker.org
+
+
+
+If the SOA record has propagated but the A or CNAME records have not, it's possible that there is still some DNS propagation delay for those specific records.
+
+DNS propagation can take anywhere from a few minutes to several hours, depending on various factors such as TTL (time-to-live) settings and the responsiveness of the DNS server. If you recently updated the DNS records for your domain, it's possible that the changes have not yet propagated to all DNS servers.
+
+To troubleshoot this issue, you can try the following:
+
+Wait a bit longer: Give it some more time, as it's possible that the DNS changes are still propagating.
+
+Check the TTL value: The TTL value specifies the time duration for which a DNS record should be cached by other DNS servers. If the TTL value is set to a high value, it can take longer for DNS changes to propagate. You can check the TTL value for your DNS records using nslookup or dig.
+
+Verify the DNS records: Check that the DNS records you updated are correct, and that you updated them in the correct zone file. Make sure that there are no typos or errors in the DNS record.
+
+Verify the DNS server: Make sure that the DNS server you're using is the correct one and that it's functioning properly. You can test this by using a different DNS server to look up the domain.
+
+If you continue to experience issues, you may want to reach out to your DNS provider for additional support.
+
+
+
+I test my records: A, CNAME, NS and SOA on Route 53, all work; yet for dnschecker.org, A and CNAME fail while NS and SOA succeed
+
+
+
