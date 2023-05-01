@@ -20,11 +20,9 @@ public interface _EntityNames {
 	String PRODUCT_SUPPLIER = "product_supplier";
 	String PURCHASE_ORDER = "purchase_order";
 	String PURCHASE_ORDER_STATUS = "purchase_order_status";
-	String SALES_REPORT = "sales_report";
 	String SHIPPER = "shipper";
 	String SUPPLIER = "supplier";
 	String ROLE = "role";
-	String STRINGS = "strings";
 	String TYPE_STATE = "type_state";
 	String USER = "user";
 }
