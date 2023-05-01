@@ -5,14 +5,12 @@
 \source northwind_order_detail_status.sql
 \source northwind_order_status.sql    
 \source northwind_order_tax_status.sql
-\source northwind_payment_type.sql
+\source northwind_payment_type.sql       
 \source northwind_privilege.sql       
 \source northwind_product.sql                    
 \source northwind_purchase_order_status.sql
 \source northwind_role.sql      
-\source northwind_sales_report.sql
 \source northwind_shipper.sql           
-\source northwind_strings.sql
 \source northwind_supplier.sql                
 \source northwind_type_state.sql
 \source northwind_user.sql
