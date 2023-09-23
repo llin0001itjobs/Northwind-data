@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name=_EntityNames.AUTHENTICATION)
-public class Authentication {
+public class Authentication implements _Entity {
 	
 	@Id
 	private int id;

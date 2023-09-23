@@ -11,15 +11,15 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = _EntityNames.CUSTOMER)
-public class Customer {
+public class Customer implements _Entity {
 
 	@Id
 	private int id;
-		
+
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-	@JoinColumn(name = "company_id")		
+	@JoinColumn(name = "company_id")
 	private Company company;
-	
+
 	@Value(value = "last_name")
 	private String lastName;
 
@@ -245,13 +245,13 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", companyId=" + company + ", lastName=" + lastName + ", firstName="
-				+ firstName + ", emailAddress=" + emailAddress + ", jobTitle=" + jobTitle + ", businessPhone="
-				+ businessPhone + ", homePhone=" + homePhone + ", mobilePhone=" + mobilePhone + ", faxNumber="
-				+ faxNumber + ", address1=" + address1 + ", address2=" + address2 + ", city=" + city
-				+ ", stateProvince=" + stateProvince + ", zipPostalCode=" + zipPostalCode + ", countryRegion="
-				+ countryRegion + ", notes=" + notes + ", webSiteTitle=" + webSiteTitle + ", webSiteUrl=" + webSiteUrl
-				+ ", portraitPath=" + portraitPath + ", portraitTitle=" + portraitTitle + "]";
+		return "Customer [id=" + id + ", companyId=" + company + ", lastName=" + lastName + ", firstName=" + firstName
+				+ ", emailAddress=" + emailAddress + ", jobTitle=" + jobTitle + ", businessPhone=" + businessPhone
+				+ ", homePhone=" + homePhone + ", mobilePhone=" + mobilePhone + ", faxNumber=" + faxNumber
+				+ ", address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", stateProvince="
+				+ stateProvince + ", zipPostalCode=" + zipPostalCode + ", countryRegion=" + countryRegion + ", notes="
+				+ notes + ", webSiteTitle=" + webSiteTitle + ", webSiteUrl=" + webSiteUrl + ", portraitPath="
+				+ portraitPath + ", portraitTitle=" + portraitTitle + "]";
 	}
 
 }

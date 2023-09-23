@@ -7,12 +7,12 @@ import javax.persistence.Table;
 import org.springframework.beans.factory.annotation.Value;
 
 @Entity
-@Table(name=_EntityNames.PRIVILEGE)
-public class Privilege {
-	
+@Table(name = _EntityNames.PRIVILEGE)
+public class Privilege implements _Entity {
+
 	@Id
 	private int id;
-	
+
 	@Value(value = "privilege_name")
 	private String privilegeName;
 
@@ -36,5 +36,5 @@ public class Privilege {
 	public String toString() {
 		return "Privilege [id=" + id + ", privilegeName=" + privilegeName + "]";
 	}
-	
+
 }

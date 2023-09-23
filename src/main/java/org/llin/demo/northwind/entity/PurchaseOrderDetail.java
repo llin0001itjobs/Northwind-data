@@ -14,23 +14,23 @@ import org.springframework.lang.Nullable;
 
 @Entity
 @Table(name = _EntityNames.PURCHASE_ORDER_DETAIL)
-public class PurchaseOrderDetail {
+public class PurchaseOrderDetail implements _Entity {
 
 	@Id
 	private int id;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-	@JoinColumn(name = "purchase_order_id")	
+	@JoinColumn(name = "purchase_order_id")
 	private PurchaseOrder purchaseOrder;
 
 	@Nullable
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-	@JoinColumn(name = "product_id")		
+	@JoinColumn(name = "product_id")
 	private Product product;
 
 	@Nullable
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-	@JoinColumn(name = "inventory_transaction_id")		
+	@JoinColumn(name = "inventory_transaction_id")
 	private InventoryTransaction inventoryTransaction;
 
 	private int quantity;
@@ -115,8 +115,8 @@ public class PurchaseOrderDetail {
 	@Override
 	public String toString() {
 		return "PurchaseOrderDetail [id=" + id + ", purchaseOrder=" + purchaseOrder + ", product=" + product
-				+ ", inventoryTransaction=" + inventoryTransaction + ", quantity=" + quantity + ", unitCost="
-				+ unitCost + ", dateReceived=" + dateReceived + ", postedToInventory=" + postedToInventory + "]";
+				+ ", inventoryTransaction=" + inventoryTransaction + ", quantity=" + quantity + ", unitCost=" + unitCost
+				+ ", dateReceived=" + dateReceived + ", postedToInventory=" + postedToInventory + "]";
 	}
 
 }

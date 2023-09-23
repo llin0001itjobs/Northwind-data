@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import org.springframework.beans.factory.annotation.Value;
 
 @Entity
-@Table(name=_EntityNames.PRODUCT)
-public class Product {
+@Table(name = _EntityNames.PRODUCT)
+public class Product implements _Entity {
 
 	@Id
 	private int id;

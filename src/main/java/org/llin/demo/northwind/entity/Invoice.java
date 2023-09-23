@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = _EntityNames.INVOICE)
-public class Invoice {
+public class Invoice implements _Entity {
 
 	@Id
 	private int id;
@@ -96,8 +96,8 @@ public class Invoice {
 
 	@Override
 	public String toString() {
-		return "Invoice [id=" + id + ", customerOrder=" + customerOrder + ", invoiceDate=" + invoiceDate
-				+ ", dueDate=" + dueDate + ", tax=" + tax + ", shipping=" + shipping + ", amountDue=" + amountDue + "]";
+		return "Invoice [id=" + id + ", customerOrder=" + customerOrder + ", invoiceDate=" + invoiceDate + ", dueDate="
+				+ dueDate + ", tax=" + tax + ", shipping=" + shipping + ", amountDue=" + amountDue + "]";
 	}
 
 }

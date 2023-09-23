@@ -14,8 +14,8 @@ import org.springframework.lang.Nullable;
 
 @Entity
 @Table(name = _EntityNames.INVENTORY_TRANSACTION)
-public class InventoryTransaction {
- 	  
+public class InventoryTransaction implements _Entity {
+
 	@Id
 	private int id;
 
@@ -24,7 +24,7 @@ public class InventoryTransaction {
 	private Product product;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-	@JoinColumn(name = "transaction_type")		
+	@JoinColumn(name = "transaction_type")
 	private InventoryTransactionType inventoryTransactionType;
 
 	@Value(value = "transaction_created_date")
@@ -38,14 +38,14 @@ public class InventoryTransaction {
 
 	@Nullable
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-	@JoinColumn(name = "customer_order_id")	
+	@JoinColumn(name = "customer_order_id")
 	private CustomerOrder customerOrder;
 
 	@Nullable
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "purchase_order_id")
 	private PurchaseOrder purchaseOrder;
-	
+
 	public InventoryTransaction() {
 		super();
 	}

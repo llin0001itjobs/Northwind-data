@@ -1,4 +1,4 @@
-  package org.llin.demo.northwind.entity;
+package org.llin.demo.northwind.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,19 +11,19 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = _EntityNames.EMPLOYEE)
-public class Employee {
+public class Employee implements _Entity {
 
 	@Id
 	private int id;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-	@JoinColumn(name = "company_id")	
+	@JoinColumn(name = "company_id")
 	private Company company;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "privilege_id")
 	private Privilege privilege;
-	
+
 	@Value(value = "last_name")
 	private String lastName;
 
@@ -257,8 +257,8 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", company=" + company + ", privilege=" + privilege + ", lastName="
-				+ lastName + ", firstName=" + firstName + ", emailAddress=" + emailAddress + ", jobTitle=" + jobTitle
+		return "Employee [id=" + id + ", company=" + company + ", privilege=" + privilege + ", lastName=" + lastName
+				+ ", firstName=" + firstName + ", emailAddress=" + emailAddress + ", jobTitle=" + jobTitle
 				+ ", businessPhone=" + businessPhone + ", homePhone=" + homePhone + ", mobilePhone=" + mobilePhone
 				+ ", faxNumber=" + faxNumber + ", address1=" + address1 + ", address2=" + address2 + ", city=" + city
 				+ ", stateProvince=" + stateProvince + ", zipPostalCode=" + zipPostalCode + ", countryRegion="

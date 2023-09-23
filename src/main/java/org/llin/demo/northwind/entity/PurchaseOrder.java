@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
 
 @Entity
 @Table(name = _EntityNames.PURCHASE_ORDER)
-public class PurchaseOrder {
+public class PurchaseOrder implements _Entity {
 
 	@Id
 	private int id;
@@ -36,9 +36,9 @@ public class PurchaseOrder {
 
 	@Nullable
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-	@JoinColumn(name = "supplier_id")	
+	@JoinColumn(name = "supplier_id")
 	private Supplier supplier;
-	
+
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "status_id")
 	private OrderStatus orderStatus;

@@ -14,7 +14,7 @@ import org.springframework.lang.Nullable;
 
 @Entity
 @Table(name = _EntityNames.ORDER_DETAIL)
-public class OrderDetail {
+public class OrderDetail implements _Entity {
 
 	@Id
 	private int id;
@@ -30,7 +30,7 @@ public class OrderDetail {
 
 	@Nullable
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-	@JoinColumn(name = "status_id")	
+	@JoinColumn(name = "status_id")
 	private OrderStatus orderStatus;
 
 	@Nullable
@@ -139,10 +139,10 @@ public class OrderDetail {
 
 	@Override
 	public String toString() {
-		return "OrderDetail [id=" + id + ", customerOrder=" + customerOrder + ", product=" + product
-				+ ", orderStatus=" + orderStatus + ", purchaseOrder=" + purchaseOrder
-				+ ", inventoryTransaction=" + inventoryTransaction + ", quantity=" + quantity + ", unitPrice="
-				+ unitPrice + ", discount=" + discount + ", dateAllocated=" + dateAllocated + "]";
+		return "OrderDetail [id=" + id + ", customerOrder=" + customerOrder + ", product=" + product + ", orderStatus="
+				+ orderStatus + ", purchaseOrder=" + purchaseOrder + ", inventoryTransaction=" + inventoryTransaction
+				+ ", quantity=" + quantity + ", unitPrice=" + unitPrice + ", discount=" + discount + ", dateAllocated="
+				+ dateAllocated + "]";
 	}
 
 }

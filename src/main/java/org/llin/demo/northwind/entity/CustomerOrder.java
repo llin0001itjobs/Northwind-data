@@ -14,11 +14,11 @@ import org.springframework.lang.Nullable;
 
 @Entity
 @Table(name = _EntityNames.CUSTOMER_ORDER)
-public class CustomerOrder {
+public class CustomerOrder implements _Entity {
 
 	@Id
 	private int id;
-	
+
 	@Nullable
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "employee_id")
@@ -33,10 +33,10 @@ public class CustomerOrder {
 
 	@Value(value = "shipped_date")
 	private LocalDateTime shippedDate;
-	
+
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "shipper_id")
-	private Shipper shipper;	
+	private Shipper shipper;
 
 	@Value(value = "ship_name")
 	private String shipName;
@@ -71,7 +71,7 @@ public class CustomerOrder {
 
 	@Value(value = "tax_rate")
 	private double taxRate;
-	
+
 	@Nullable
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "tax_status_id")

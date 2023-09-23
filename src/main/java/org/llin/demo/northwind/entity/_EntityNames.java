@@ -24,5 +24,4 @@ public interface _EntityNames {
 	String SUPPLIER = "supplier";
 	String ROLE = "role";
 	String TYPE_STATE = "type_state";
-	String USER = "user";
 }

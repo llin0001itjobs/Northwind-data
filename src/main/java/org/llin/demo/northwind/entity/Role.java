@@ -4,13 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Role {
+public class Role implements _Entity {
 
 	@Id
 	private String type;
 	private String description;
 
-	
 	public Role() {
 		super();
 	}
@@ -21,6 +20,17 @@ public class Role {
 		this.description = description;
 	}
 
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setId(int id) {
+		// TODO Auto-generated method stub
+	}
+	
 	public String getType() {
 		return type;
 	}
@@ -41,6 +51,7 @@ public class Role {
 	public String toString() {
 		return "Role [type=" + type + ", description=" + description + "]";
 	}
-	
-	
+
+
+
 }

@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = _EntityNames.SUPPLIER)
-public class Supplier {
+public class Supplier implements _Entity {
 
 	@Id
 	private int id;
