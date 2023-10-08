@@ -1,14 +1,21 @@
 package org.llin.demo.northwind.service;
 
-import org.llin.demo.northwind.entity.Product;
+import java.util.List;
+
+import org.llin.demo.northwind.entity._Entity;
+import org.llin.demo.northwind.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+@SuppressWarnings("unchecked")
 @Service
-public class ProductService extends GenericService {
+public class ProductService<T extends _Entity>  {
 	
-	public String getProducts() {
-		return getEntity(Product.class.getSimpleName());
+	@Autowired
+	private ProductRepository pr;
+		
+	public List<T> getProducts() {
+		return  (List<T>) pr.findAll();
 	}
-	
-	
+
 }
