@@ -8,7 +8,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(path="shipper")
 public interface ShipperRepository extends JpaRepository<Shipper, Integer> {
-	
+
+
 	Page<Shipper> findAllByOrderByStateProvinceAsc(Pageable pageable);
 	Page<Shipper> findAllByOrderByStateProvinceDesc(Pageable pageable);
+	
 }

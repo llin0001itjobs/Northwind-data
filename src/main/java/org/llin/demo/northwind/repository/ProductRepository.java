@@ -40,7 +40,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 	Page<Product> findByTargetLevelBetweenOrderByTargetLevelDesc(Integer targetLevel1, Integer targetLevel2,
 			Pageable pageable);
-	
 		
-
 }

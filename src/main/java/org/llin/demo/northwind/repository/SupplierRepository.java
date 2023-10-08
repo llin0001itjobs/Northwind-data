@@ -8,7 +8,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(path = "supplier")
 public interface SupplierRepository extends JpaRepository<Supplier, Integer> {
-	
+
 	Page<Supplier> findAllByOrderByLastNameAsc(Pageable pageable);
 
 	Page<Supplier> findAllByOrderByLastNameDesc(Pageable pageable);
