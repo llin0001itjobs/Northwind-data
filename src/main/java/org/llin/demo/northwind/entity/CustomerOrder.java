@@ -118,19 +118,19 @@ public class CustomerOrder implements _Entity {
 		this.shipper = shipper;
 	}
 
-	public OrderTaxStatus getOrdersTaxStatus() {
+	public OrderTaxStatus getOrderTaxStatus() {
 		return orderTaxStatus;
 	}
 
-	public void setOrdersTaxStatus(OrderTaxStatus orderTaxStatus) {
+	public void setOrderTaxStatus(OrderTaxStatus orderTaxStatus) {
 		this.orderTaxStatus = orderTaxStatus;
 	}
 
-	public OrderStatus getOrdersStatus() {
+	public OrderStatus getOrderStatus() {
 		return orderStatus;
 	}
 
-	public void setOrdersStatus(OrderStatus orderStatus) {
+	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
 	}
 

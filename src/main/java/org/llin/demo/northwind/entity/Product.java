@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -17,7 +18,7 @@ public class Product implements _Entity {
 	@Id
 	private int id;
 
-	@ManyToMany(mappedBy = "product", cascade = { CascadeType.ALL })
+	@ManyToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
 	private List<Supplier> supplier;
 
 	@Value(value = "product_code")
