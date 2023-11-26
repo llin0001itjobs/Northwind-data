@@ -1,22 +1,37 @@
 package org.llin.demo.northwind.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.llin.demo.northwind.entity._Entity;
+import org.llin.demo.northwind.entity.Customer;
+import org.llin.demo.northwind.entity.Employee;
 import org.llin.demo.northwind.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@SuppressWarnings("unchecked")
 @Service
-public class CustomerService<T extends _Entity>  {
-	
+public class CustomerService {
+
 	@Autowired
 	private CustomerRepository cr;
-		
-	public List<T> getCustomers() {
-		return  (List<T>) cr.findAll();
+
+	public List<Customer> getCustomers() {
+		return getCustomers(Integer.MAX_VALUE);
 	}
 
-	
+	public List<Customer> getCustomers(int size) {
+		List<Customer> list = (List<Customer>) cr.findAll();
+		size = list.size() < size ? list.size() : size;
+		list = list.subList(0, size);
+		return list;
+	}
+
+	public Optional<Customer> getCustomer(Integer id) {
+		return cr.findById(id);
+	}
+
+	public long getCount() {
+		return cr.count();
+	}
+
 }

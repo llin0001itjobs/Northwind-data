@@ -1,21 +1,28 @@
 package org.llin.demo.northwind.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.llin.demo.northwind.entity._Entity;
+import org.llin.demo.northwind.entity.Authentication;
 import org.llin.demo.northwind.repository.AuthenticationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@SuppressWarnings("unchecked")
 @Service
-public class AuthenticationService<T extends _Entity>  {
+public class AuthenticationService  {
 	
 	@Autowired
 	private AuthenticationRepository ar;
 		
-	public List<T> getAuthentications() {
-		return  (List<T>) ar.findAll();
+	public List<Authentication> getAuthentications() {
+		return  ar.findAll();
 	}
 
+	public Optional<Authentication> getAuthentication(Integer id) {
+		return  ar.findById(id);
+	}
+
+	public long getCount() {
+		return  ar.count();
+	} 
 }

@@ -1,22 +1,54 @@
 package org.llin.demo.northwind.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import org.llin.demo.northwind.entity._Entity;
+import org.llin.demo.northwind.entity.CustomerOrder;
 import org.llin.demo.northwind.repository.CustomerOrderRepository;
+import org.llin.demo.northwind.util.PhoneFormatUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@SuppressWarnings("unchecked")
 @Service
-public class CustomerOrderService<T extends _Entity>  {
+public class CustomerOrderService  {
 	
 	@Autowired
 	private CustomerOrderRepository cor;
 		
-	public List<T> getCustomerOrders() {
-		return  (List<T>) cor.findAll();
+	public List<CustomerOrder> getCustomerOrders() {
+		return getCustomerOrders(Integer.MAX_VALUE);
+	}
+	
+	public List<CustomerOrder> getCustomerOrders(int size) {
+		List<CustomerOrder> list = (List<CustomerOrder>) cor.findAll();
+		list = formatPhoneNumber(list);
+		size = list.size() < size ? list.size() : size; 
+		list = list.subList(0, size);
+		return list;				
 	}
 
+	public Optional<CustomerOrder> getCustomerOrder(Integer id) {
+		return  cor.findById(id);
+	}
+
+	public long getCount() {
+		return  cor.count();
+	} 
 	
+	private List<CustomerOrder> formatPhoneNumber(List<CustomerOrder> list) {
+		List<CustomerOrder> newList = new ArrayList<>(); 
+		for (CustomerOrder co: list) {
+			co.getCustomer().setBusinessPhone(PhoneFormatUtil.formatPhoneNumber(co.getCustomer().getBusinessPhone()));
+			co.getCustomer().setFaxNumber(PhoneFormatUtil.formatPhoneNumber(co.getCustomer().getFaxNumber()));
+			co.getCustomer().setHomePhone(PhoneFormatUtil.formatPhoneNumber(co.getCustomer().getHomePhone()));
+			co.getCustomer().setMobilePhone(PhoneFormatUtil.formatPhoneNumber(co.getCustomer().getMobilePhone()));
+			co.getEmployee().setBusinessPhone(PhoneFormatUtil.formatPhoneNumber(co.getEmployee().getBusinessPhone()));
+			co.getEmployee().setFaxNumber(PhoneFormatUtil.formatPhoneNumber(co.getEmployee().getFaxNumber()));
+			co.getEmployee().setHomePhone(PhoneFormatUtil.formatPhoneNumber(co.getEmployee().getHomePhone()));
+			co.getEmployee().setMobilePhone(PhoneFormatUtil.formatPhoneNumber(co.getEmployee().getMobilePhone()));
+			newList.add(co);
+		}
+		return newList;
+	}
 }
