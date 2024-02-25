@@ -11,10 +11,11 @@
 DROP TABLE IF EXISTS payment_type;
 
 CREATE TABLE payment_type (
+  id int NOT NULL AUTO_INCREMENT,
   type varchar(64) NOT NULL,
   description varchar(64) NOT NULL,
-  PRIMARY KEY (type),
-  UNIQUE KEY type_UNIQUE (type)
+  PRIMARY KEY (id),
+  UNIQUE KEY type_UNIQUE (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 
@@ -24,7 +25,7 @@ CREATE TABLE payment_type (
 
 LOCK TABLES payment_type WRITE;
 
-INSERT INTO payment_type VALUES ('CASH','Cash'),('CHECK','Check'),('CREDIT','Credit Card');
+INSERT INTO payment_type VALUES (1,'CASH','Cash'),(2,'CHECK','Check'),(3,'CREDIT','Credit Card');
 
 UNLOCK TABLES;
 
