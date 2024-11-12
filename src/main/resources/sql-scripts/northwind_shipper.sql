@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS shipper;
 
 CREATE TABLE shipper (
   id int NOT NULL AUTO_INCREMENT,
-  company_id int DEFAULT '1',  
+  company_id int DEFAULT '1',
   last_name varchar(50) DEFAULT NULL,
   first_name varchar(50) DEFAULT NULL,
   email_address varchar(50) DEFAULT NULL,
@@ -44,8 +44,14 @@ CREATE TABLE shipper (
 
 LOCK TABLES shipper WRITE;
 
-INSERT INTO shipper VALUES (1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123 Any Street','Memphis','TN','99999','USA',NULL,10,NULL,NULL,NULL,NULL,NULL),
-	(2,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123 Any Street','Memphis','TN','99999','USA',NULL,10,NULL,NULL,NULL,NULL,NULL),
-	(3,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123 Any Street','Springfield','WA','98106','USA',NULL,9,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO shipper VALUES 
+    (1,13,'Haiser','Kimberly','info@officedepot.com','Manager',NULL,NULL,NULL,NULL,'6600 North Military Trail','Boca Raton','FL','33496','USA','Office Depot, Inc. (NASDAQ:ODP) is a leading provider of business services and supplies, products and technology solutions through its fully integrated omni-channel platform of approximately 1,400 stores, online presence, and dedicated sales professionals and technicians to small, medium and enterprise businesses.',NULL,NULL,NULL,NULL,NULL),
+	(2,13,'Simtha','Bob','pr@cinemark.com','Manager',NULL,NULL,NULL,NULL,'3200 Airport Rd.','Boca Raton','FL','33431','USA','Cinemark is proud to exhibit a variety of content, from the latest blockbusters to special live events, and has a strategically built portfolio of brands to reach movie lovers across the country, including Century Theatres, Rave Cinemas, Tinseltown USA and CinéArts.',NULL,NULL,NULL,NULL,NULL),
+	(3,13,'Jones','Doug','customer.service@uline.com','Customer Representative','1-800-295-5510',NULL,NULL,'1-800-295-5571','12575 Uline Drive','Pleasant Prairie','WI','53158','USA','Uline, a family-owned business, is the leading distributor of shipping, industrial and packaging materials to businesses throughout North America. For over 40 years, we''ve stayed committed to providing the highest levels of service and quality products to our customers. Depend on Uline to build your business — we won''t let you down.',NULL,NULL,NULL,NULL,NULL);
 
 UNLOCK TABLES;
+
+
+  
+
+
