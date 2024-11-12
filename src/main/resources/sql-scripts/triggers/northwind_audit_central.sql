@@ -16,7 +16,8 @@ CREATE TABLE `audit_central` (
   `id` int NOT NULL AUTO_INCREMENT,
   `action` varchar(64) NOT NULL,
   `table_name` varchar(64) NOT NULL,
-  `creation_date` datetime NOT NULL,  
+  `date_created` datetime NOT NULL,  
+  `date_upated` datetime NOT NULL,  
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
