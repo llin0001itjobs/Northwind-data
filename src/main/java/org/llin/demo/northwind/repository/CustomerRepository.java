@@ -1,6 +1,6 @@
-package org.llin.demo.northwind.repository;
+package org.llin.demo.northwind.data.repository;
 
-import org.llin.demo.northwind.entity.Customer;
+import org.llin.demo.northwind.data.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

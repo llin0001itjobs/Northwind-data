@@ -1,8 +1,8 @@
-package org.llin.demo.northwind.repository;
+package org.llin.demo.northwind.data.repository;
 
 import java.util.Date;
 
-import org.llin.demo.northwind.entity.OrderDetail;
+import org.llin.demo.northwind.data.entity.OrderDetail;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
