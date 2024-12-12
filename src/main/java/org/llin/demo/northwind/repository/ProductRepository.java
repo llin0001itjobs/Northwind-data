@@ -4,31 +4,32 @@ import java.util.List;
 
 import org.llin.demo.northwind.data.entity.Product;
 import org.llin.demo.northwind.data.repository.model.CategoryRatio;
-import org.llin.demo.northwind.data.repository.model.ProductCountPerPriceRange;
+import org.llin.demo.northwind.data.repository.model.PriceRangePerListPrice;
+import org.llin.demo.northwind.data.repository.model.PriceRangePerStandardCost;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(path = "product")
+@RepositoryRestResource(path="product")
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    
-    @Query("SELECT category, COUNT(*) as product_count, ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Product),2) as percentage"
-    		+ " FROM Product "
+	
+    @Query("SELECT NEW org.llin.demo.northwind.data.repository.model.CategoryRatio(p.category, COUNT(p), ROUND(COUNT(p) * 100.0 / (SELECT COUNT(*) FROM Product),2))"
+    		+ " FROM Product p"
     		+ " GROUP BY category"
     		+ " ORDER BY category")
-    List<CategoryRatio> getCategoryRatios();
+    List<CategoryRatio> categoryRatios();
     
-    @Query("SELECT "
-    		+ "    CASE "
+    @Query("SELECT NEW org.llin.demo.northwind.data.repository.model.PriceRangePerStandardCost "
+    		+ "    (CASE "
     		+ "        WHEN standard_cost < 12.5 THEN '0.5 - 12.49'"
     		+ "        WHEN standard_cost < 25 THEN '12.5 - 24.99'"
     		+ "        WHEN standard_cost < 37.5 THEN '25 - 37.49'"
     		+ "        WHEN standard_cost < 50 THEN '37.5 - 49.99'"
     		+ "        ELSE '50 - 60.75'"
-    		+ "    END AS price_range,"
-    		+ "    COUNT(*) AS product_count"
+    		+ "    END AS priceRange,"
+    		+ "    COUNT(*) AS productCount)"
     		+ " FROM "
     		+ "   Product"
     		+ " GROUP BY "
@@ -40,18 +41,18 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     		+ "        ELSE '50 - 60.75'"
     		+ "    END"
     		+ " ORDER BY "
-    		+ "    price_range")
-    List<ProductCountPerPriceRange>getPriceRangePerStandardCost();
+    		+ "    priceRange")
+    List<PriceRangePerStandardCost> priceRangePerStandardCost();
     
-    @Query("SELECT "
-    		+ "    CASE "
+    @Query("SELECT NEW org.llin.demo.northwind.data.repository.model.PriceRangePerListPrice "
+    		+ "    (CASE "
     		+ "        WHEN list_price < 17.60 THEN '1.80 - 17.59'"
     		+ "        WHEN list_price < 34.20 THEN '17.60 - 34.19'"
     		+ "        WHEN list_price < 50.80 THEN '34.20 - 50.79'"
     		+ "        WHEN list_price < 67.40 THEN '50.80 - 67.39'"
     		+ "        ELSE '67.40 - 81.00'"
-    		+ "    END AS price_range,"
-    		+ "    COUNT(*) AS product_count"
+    		+ "    END AS priceRange,"
+    		+ "    COUNT(*) AS productCount)"
     		+ " FROM "
     		+ "    Product"
     		+ " GROUP BY "
@@ -63,8 +64,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     		+ "        ELSE '67.40 - 81.00'"
     		+ "    END"
     		+ " ORDER BY "
-    		+ "    price_range")
-    List<ProductCountPerPriceRange>getPriceRangePerListPrice();	
+    		+ "    priceRange") 
+    List<PriceRangePerListPrice> priceRangePerListPrice();	
     
 	Page<Product> findByCategoryOrderByProductNameAsc(String Category, Pageable pageable);
 
@@ -96,8 +97,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 			Pageable pageable);
 
 	Page<Product> findByTargetLevelBetweenOrderByTargetLevelDesc(Integer targetLevel1, Integer targetLevel2,
-			Pageable pageable);
-	
-	
-		
+			Pageable pageable);		
 }

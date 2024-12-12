@@ -14,26 +14,26 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(path="purchaseOrderDetail")
 public interface PurchaseOrderDetailRepository extends JpaRepository<PurchaseOrderDetail, Integer> {
 		
-	@Query("SELECT "
-			+ "    p.unitCost, "
-			+ "    SUM(quantity) AS total_quantity"
+	@Query("SELECT NEW org.llin.demo.northwind.data.repository.model.QuantityPerUnitCost"
+			+ "    (p.unitCost AS unitCost, "
+			+ "    SUM(quantity) AS totalQuantity)"
 			+ " FROM "
 			+ "    PurchaseOrderDetail p"
 			+ " GROUP BY "
 			+ "    unit_cost"
 			+ " ORDER BY "
-			+ "    unit_cost")
-	List<QuantityPerUnitCost> getQuantityPerUnitCost();
+			+ "    unit_cost")   
+	List<QuantityPerUnitCost> quantityPerUnitCost();
 		
-	@Query("SELECT "
-			+ "    CASE "
+	@Query("SELECT NEW org.llin.demo.northwind.data.repository.model.QuantityPerCostRange"
+			+ "    (CASE "
 			+ "        WHEN unit_cost < 13 THEN '0 - 12.99'"
 			+ "        WHEN unit_cost < 26 THEN '13 - 25.99'"
 			+ "        WHEN unit_cost < 39 THEN '26 - 38.99'"
 			+ "        WHEN unit_cost < 52 THEN '39 - 51.99'"
 			+ "        ELSE '52 and above'"
 			+ "    END AS costRange,"
-			+ "    SUM(quantity) AS total_quantity"
+			+ "    SUM(quantity) AS totalQuantity)"
 			+ " FROM "
 			+ "    PurchaseOrderDetail p"
 			+ " GROUP BY "
@@ -45,8 +45,8 @@ public interface PurchaseOrderDetailRepository extends JpaRepository<PurchaseOrd
 			+ "        ELSE '52 and above'"
 			+ "    END"
 			+ " ORDER BY "
-			+ "    costRange")	
-	List<QuantityPerCostRange> getQuantityPerCostRange();
+			+ "    costRange")
+	List<QuantityPerCostRange> quantityPerCostRange();
 	
 	Page<PurchaseOrderDetail> findByQuantityOrderByQuantityAsc(double quantity, Pageable pageable);
 	Page<PurchaseOrderDetail> findByQuantityOrderByQuantityDesc(double quantity, Pageable pageable);
