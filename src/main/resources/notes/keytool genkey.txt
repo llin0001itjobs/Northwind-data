@@ -1,7 +1,7 @@
 Microsoft Windows [Version 10.0.19045.2251]
 (c) Microsoft Corporation. All rights reserved.
 
-D:\java\jdk-17.0.4\bin>.\keytool -genkey -alias northwind-01 -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore northwind-01.p12 -validity 3650
+keytool -genkey -alias northwind-01 -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore northwind-01.p12 -validity 3650
 Enter keystore password:
 Re-enter new password:
 They don't match. Try again
@@ -43,7 +43,7 @@ keytool -export -keystore northwind-01.p12 -alias northwind-01 -file northwind-0
 
 We'll be asked to input the JRE keystore password. If you have never changed it, it should be the default one: changeit or changeme, depending on the
 keytool -importcert -file northwind-01.crt -alias northwind-01 -keystore D:/java/jdk-17.0.4/lib/security/cacerts
-
+keytool -importcert -file northwind-01.crt -alias northwind-01 -keystore "C:/Program Files/Java/jdk-17.0.4/lib/security/cacerts"
 --from https://stackoverflow.com/questions/16891182/keytool-error-keystore-was-tampered-with-or-password-was-incorrect
 --I solved it by using the default password for cacerts keystore : 'changeit' 
 
